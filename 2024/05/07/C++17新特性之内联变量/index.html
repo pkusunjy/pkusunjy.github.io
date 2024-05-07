@@ -17,18 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Repositories | 孙嘉玉的技术博客</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Repositories">
-<meta property="og:url" content="http://example.com/repository/index.html">
+  <title>C++17新特性之内联变量 | 孙嘉玉的技术博客</title>
+  <meta name="description" content="非const的静态成员变量  C++17以前 123456&#x2F;&#x2F; 某个头文件class MyClass &#123;    static std::string name;&#125;;&#x2F;&#x2F; 某个源文件MyClass::name &#x3D; &quot;abc&quot;;  C++17起 1234&#x2F;&#x2F; 某个头文件class MyClass &#123;    static inline std::str">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++17新特性之内联变量">
+<meta property="og:url" content="http://example.com/2024/05/07/C++17%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8B%E5%86%85%E8%81%94%E5%8F%98%E9%87%8F/index.html">
 <meta property="og:site_name" content="孙嘉玉的技术博客">
+<meta property="og:description" content="非const的静态成员变量  C++17以前 123456&#x2F;&#x2F; 某个头文件class MyClass &#123;    static std::string name;&#125;;&#x2F;&#x2F; 某个源文件MyClass::name &#x3D; &quot;abc&quot;;  C++17起 1234&#x2F;&#x2F; 某个头文件class MyClass &#123;    static inline std::str">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-05-06T11:23:24.937Z">
-<meta property="article:modified_time" content="2024-05-06T11:23:24.937Z">
+<meta property="article:published_time" content="2024-05-07T01:53:11.053Z">
+<meta property="article:modified_time" content="2024-05-07T02:19:33.242Z">
 <meta property="article:author" content="Sun Jiayu">
+<meta property="article:tag" content="c++17">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://example.com/repository/index.html">
+  <link rel="canonical" href="http://example.com/2024/05/07/C++17%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8B%E5%86%85%E8%81%94%E5%8F%98%E9%87%8F/index.html">
   
     <link rel="alternate" href="/atom.xml" title="孙嘉玉的技术博客" type="application/atom+xml">
   
@@ -39,13 +42,15 @@
 <link rel="stylesheet" href="/css/style.css">
 
   
+    <link href="//cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" rel="stylesheet">
+  
   
   
   
 <meta name="generator" content="Hexo 7.2.0"></head>
 
 
-<body class="main-center no-sidebar" itemscope itemtype="http://schema.org/WebPage">
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
   <header class="header" itemscope itemtype="http://schema.org/WPHeader">
   <div class="slimContent">
     <div class="navbar-header">
@@ -284,48 +289,135 @@
 </aside>
 
   
-  <main class="main" role="main">
-  <article class="article article-repository article-type-list" itemscope="">
-  <header class="article-header">
-    <h1 itemprop="title">Repositories</h1>
-    <p class="text-muted">I have <span id="repo-count">0</span> projects on <span id="repo-platform">Github</span></p>
-  </header>
-  <div class="article-body">
-    <div class="repo-content">
-      <div class="blankslate">
-        <p>正在加载...</p>
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-C++17新特性之内联变量" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++17新特性之内联变量
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2024/05/07/C++17%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8B%E5%86%85%E8%81%94%E5%8F%98%E9%87%8F/" class="article-date">
+	  <time datetime="2024-05-07T01:53:11.053Z" itemprop="datePublished">2024-05-07</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/c-17/" rel="tag">c++17</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/05/07/C++17%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8B%E5%86%85%E8%81%94%E5%8F%98%E9%87%8F/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 161(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 1(分)</span>
+	
+
       </div>
     </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="非const的静态成员变量"><a class="markdownIt-Anchor" href="#非const的静态成员变量"></a> 非const的静态成员变量</h2>
+<h3 id="c17以前"><a class="markdownIt-Anchor" href="#c17以前"></a> C++17以前</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 某个头文件</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line">    <span class="type">static</span> std::string name;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 某个源文件</span></span><br><span class="line">MyClass::name = <span class="string">&quot;abc&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="c17起"><a class="markdownIt-Anchor" href="#c17起"></a> C++17起</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 某个头文件</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line">    <span class="type">static</span> <span class="keyword">inline</span> std::string name = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>该静态成员变量的初始化，在第一次被源文件发现时执行。</p>
+<h2 id="constexpr"><a class="markdownIt-Anchor" href="#constexpr"></a> constexpr</h2>
+<p>自从C++17起，对于静态成员变量，constexpr暗示inline。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">D</span> &#123;</span><br><span class="line">    <span class="type">static</span> <span class="keyword">constexpr</span> <span class="type">int</span> n = <span class="number">5</span>; <span class="comment">// C++11/C++14: declaration</span></span><br><span class="line">                                <span class="comment">// C++17: definition</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="thread_local"><a class="markdownIt-Anchor" href="#thread_local"></a> thread_local</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">MyData</span> &#123;</span><br><span class="line">    <span class="keyword">inline</span> <span class="type">static</span> std::string gName = <span class="string">&quot;global&quot;</span>; <span class="comment">// 全局唯一</span></span><br><span class="line">    <span class="keyword">inline</span> <span class="type">static</span> <span class="keyword">thread_local</span> std::string tName = <span class="string">&quot;tls&quot;</span>; <span class="comment">// 每个线程内唯一</span></span><br><span class="line">    std::string lName = <span class="string">&quot;local&quot;</span>; <span class="comment">// 每个对象唯一</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2024/05/07/C++17%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8B%E5%86%85%E8%81%94%E5%8F%98%E9%87%8F/" title="C++17新特性之内联变量" target="_blank" rel="external">http://example.com/2024/05/07/C++17新特性之内联变量/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/pkusunjy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://www.gravatar.com/avatar/62d76ac729d3c1bb4019fe732cd4bc2a?s=128" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/pkusunjy" target="_blank"><span class="text-dark">孙嘉玉</span><small class="ml-1x"></small></a></h3>
+        <div></div>
+      </div>
+    </figure>
   </div>
-</article>
+</div>
 
 
+    </div>
+  </article>
+  
+    
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2024/05/06/C++17%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8B%E7%BB%93%E6%9E%84%E5%8C%96%E7%BB%91%E5%AE%9A/" title="C++17新特性之结构化绑定"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
   
 
 
-
-<!--项模版-->
-<script type="text/template" id="list-template">
-  <li class="col-sm-6 col-md-6 col-lg-4">
-    <div class="repo hover-shadow hover-grow">
-      <div class="repo-image geopattern" data-pattern-id="{%=name%}"></div>
-      <h3 class="repo-title"><a href="{%=clone_url%}" target="_blank" rel="external nofollow noopener noreferrer">{%=full_name%}</a></h3>
-      <p class="repo-body">{%=description%}</p>
-      <div class="repo-meta">
-        <span class="meta meta-type pull-left" aria-label="{%=language%} project">{%=language%}</span>
-        <span class="meta meta-star" aria-label="{%=stargazers_count%} stars"><i class="icon icon-star-fill"></i> {%=stargazers_count%}</span>
-        <span class="meta meta-fork" aria-label="{%=forks_count%} forks"><i class="icon icon-code-fork"></i> {%=forks_count%}</span>
-        <span class="meta meta-last-updated" aria-label="最后更新时间：{%=updated_at%}">
-        <i class="icon icon-clock"></i> <time datetime="{%=updated_at%}">{%=updated_at%}</time></span>
-      </div>
-    </div>
-  </li>
-</script>
-
-<!--获取失败模版-->
-<script type="text/template" id="error-template">
-  <h3>加载失败</h3><p>请刷新或稍后再试...</p>
-</script>
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -377,71 +469,9 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+
+
    
-  
-    
-  <script type="text/javascript">
-    var open = function () {
-      var baiduTpl = new Object();
-      var handleTpl = function () {
-        baiduTpl.list = baidu.template("list-template");
-        baiduTpl.error = baidu.template("error-template");
-      };
-
-      var handleRepo = function () {
-        var repoContainer = $('.repo-content');
-        var errorContainer = repoContainer.find(".blankslate");
-        var countContainer = $("#repo-count");
-        var platformContainer = $("#repo-platform");
-
-        platformContainer.text("Github");
-
-        url = "https://api.github.com/users/cofess/repos";
-
-        $.get(url, function (result) {
-          if (result) {
-            errorContainer.remove();
-            countContainer.text(result.length);
-            var ul = $("<ul class='repo-list row clearfix'></ul>");
-            result.sort(function (a, b) {
-              return new Date(b.updated_at) - new Date(a.updated_at);
-            }).sort(function (a, b) {
-              var a_start = a.stargazers_count;
-              var b_start = b.stargazers_count;
-              if (a.fork) a_start * 0.5;
-              if (b.fork) b_start * 0.5;
-              return b_start - a_start;
-            }).map(function (repo) {
-              if (!repo.description) {
-                repo.description = "";
-              }
-              repo.updated_at = repo.updated_at.substring(0, repo.updated_at.lastIndexOf("T"));
-              var html = baiduTpl.list(repo);
-              ul.append(html);
-            });
-
-            repoContainer.append(ul);
-            $(".geopattern").each(function () {
-              $(this).geopattern($(this).data('pattern-id'));
-            });
-          } else {
-            errorContainer.append(baiduTpl.error());
-          }
-        });
-      };
-
-      return {
-        init: function () {
-          handleTpl();
-          handleRepo();
-        }
-      }
-    };
-    $(open().init);
-  </script>
-
-  
-
 
 
 
